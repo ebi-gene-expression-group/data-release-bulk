@@ -9,16 +9,16 @@ stagingApiUrl=${stagingApiUrl:-https://wwwdev.ebi.ac.uk/gxa/api}
 [ ! -z ${ATLAS_FTP+x} ] || ( echo "Env var ATLAS_FTP path to the experiment needs to be defined." && exit 1 )
 
 contrastdetails=$ATLAS_EXPS/contrastdetails.tsv
-curl -s -o $contrastdetails "$stagingApiUrl/$f"
+curl -s -o $contrastdetails "$stagingApiUrl/contrastdetails.tsv"
 if [ $? -ne 0 ]; then
-    echo "ERROR: Failed to retrieve $stagingApiUrl/$f"
+    echo "ERROR: Failed to retrieve $stagingApiUrl/contrastdetails.tsv"
     rm -rf $contrastdetails
     exit 1
 fi
 assaygroupsdetails=$ATLAS_EXPS/assaygroupsdetails.tsv
-curl -s -o $assaygroupsdetails "$stagingApiUrl/$f"
+curl -s -o $assaygroupsdetails "$stagingApiUrl/assaygroupsdetails.tsv"
 if [ $? -ne 0 ]; then
-    echo "ERROR: Failed to retrieve $stagingApiUrl/$f"
+    echo "ERROR: Failed to retrieve $stagingApiUrl/assaygroupsdetails.tsv"
     rm -rf $assaygroupsdetails
     exit 1
 fi
