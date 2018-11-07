@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# Apparently this step is not needed anymore, the table producing it has been deleted.
+
 [ ! -z ${dbConnection+x} ] || ( echo "Env var dbConnection needs to be defined." && exit 1 )
 [ ! -z ${ATLAS_EXPS+x} ] || ( echo "Env var ATLAS_EXPS path to the experiment needs to be defined." && exit 1 )
 
