@@ -21,8 +21,3 @@ if [ $? -ne 0 ]; then
 else
     echo "Gene set enrichment analysis data prepared."
 fi
-
-# 9. Synch $ATLAS_FTP/experiments with what is in: $ATLAS_EXPS (note that this synch preserves timestamps, permissions, etc)
-#    so e.g. private experiments in $ATLAS_EXPS will retain their restricted permissions in $ATLAS_FTP/experiments
-cd $ATLAS_EXPS
-find . -xdev -depth -print | cpio -pdm $ATLAS_FTP/experiments
