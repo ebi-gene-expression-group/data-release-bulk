@@ -8,3 +8,12 @@ set -e
 #    so e.g. private experiments in $ATLAS_EXPS will retain their restricted permissions in $ATLAS_FTP/experiments
 cd $ATLAS_EXPS
 find . -xdev -depth -print | cpio -pdm $ATLAS_FTP/experiments
+
+
+if [ ! -z ${ATLAS_SC_EXPERIMENTS+x} ]; then
+  echo "Performing sync for single cell experiments..."
+  cd $ATLAS_SC_EXPERIMENTS
+  find . -xdev -depth -print | cpio -pdm $ATLAS_FTP/sc_experiments
+else
+  echo "Variable ATLAS_SC_EXPERIMENTS is not set, skipping sync for single cell experiments."
+fi
