@@ -10,14 +10,25 @@ stagingApiUrl=${stagingApiUrl:-https://wwwdev.ebi.ac.uk/gxa/api}
 
 contrastdetails=$ATLAS_EXPS/contrastdetails.tsv
 curl -s -o $contrastdetails "$stagingApiUrl/contrastdetails.tsv"
-if [ $? -ne 0 ]; then
-    echo "ERROR: Failed to retrieve $stagingApiUrl/contrastdetails.tsv"
+fetchStatus=$?
+
+# HTML in the tsv output spells trouble
+grep -q '<html>' $contrastdetails
+errorStatus=$?
+
+if [ $fetchStatus? -ne 0 ] || [ $errorStatus -eq 0 ]; then
+    echo "ERROR: Failed to retrieve $stagingApiUrl/contrastdetails.tsv" 1>&2
     rm -rf $contrastdetails
     exit 1
 fi
+
 assaygroupsdetails=$ATLAS_EXPS/assaygroupsdetails.tsv
 curl -s -o $assaygroupsdetails "$stagingApiUrl/assaygroupsdetails.tsv"
-if [ $? -ne 0 ]; then
+fetchStatus=$?
+grep -q '<html>' $assaygroupsdetails
+errorStatus=$?
+
+if [ $fetchStatus? -ne 0 ] || [ $errorStatus -eq 0 ]; then
     echo "ERROR: Failed to retrieve $stagingApiUrl/assaygroupsdetails.tsv"
     rm -rf $assaygroupsdetails
     exit 1
