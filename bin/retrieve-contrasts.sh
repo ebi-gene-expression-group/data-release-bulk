@@ -16,7 +16,7 @@ fetchStatus=$?
 grep -q '<html>' $contrastdetails
 errorStatus=$?
 
-if [ $fetchStatus? -ne 0 ] || [ $errorStatus -eq 0 ]; then
+if [ $fetchStatus -ne 0 ] || [ $errorStatus -eq 0 ]; then
     echo "ERROR: Failed to retrieve $stagingApiUrl/contrastdetails.tsv" 1>&2
     rm -rf $contrastdetails
     exit 1
@@ -28,7 +28,7 @@ fetchStatus=$?
 grep -q '<html>' $assaygroupsdetails
 errorStatus=$?
 
-if [ $fetchStatus? -ne 0 ] || [ $errorStatus -eq 0 ]; then
+if [ $fetchStatus -ne 0 ] || [ $errorStatus -eq 0 ]; then
     echo "ERROR: Failed to retrieve $stagingApiUrl/assaygroupsdetails.tsv" 1>&2
     rm -rf $assaygroupsdetails
     exit 1
