@@ -29,7 +29,7 @@ grep -q '<html>' $assaygroupsdetails
 errorStatus=$?
 
 if [ $fetchStatus? -ne 0 ] || [ $errorStatus -eq 0 ]; then
-    echo "ERROR: Failed to retrieve $stagingApiUrl/assaygroupsdetails.tsv"
+    echo "ERROR: Failed to retrieve $stagingApiUrl/assaygroupsdetails.tsv" 1>&2
     rm -rf $assaygroupsdetails
     exit 1
 fi
