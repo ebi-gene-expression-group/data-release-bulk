@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 # 2. Retrieve contrastdetails.tsv and assaygroupsdetails.tsv from wwwdev.gxa and put them into $ATLAS_EXPS
 # This step doesn't seem to require step 1, and could be run separately/parallely.
